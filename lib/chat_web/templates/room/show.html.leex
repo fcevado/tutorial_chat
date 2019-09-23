@@ -1,0 +1,36 @@
+<div class="chatroom">
+  <div class="chat-content">
+    <div class="list-group">
+      <div class="list-group-item active">
+        <h2><%= @room.name %></h2>
+      </div>
+      <div class="list-group-item messages">
+        <ul>
+          <%= for message <- Enum.reverse(@room.messages) do %>
+              <p><strong><%= name(message.user.email) %>: </strong><%= message.content %></p>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= form_for @message, "#", [phx_change: :typing, phx_submit: :message], fn _f -> %>
+          <%= text_input :message, :content, value: @message.changes[:content], phx_blur: "stop_typing", placeholder: "escreva aqui..." %>
+          <%= hidden_input :message, :user_id, value: @user.id  %>
+          <%= hidden_input :message, :room_id, value: @room.id %>
+          <%= submit "enviar" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="members list-group">
+    <ul>
+      <div class="list-group-item active">
+        <h3>Members</h3>
+      </div>
+      <div class="list-group-item">
+        <%= for u <- @users do %>
+          <p><%= name(u.email) %><%= if u.typing, do: "..." %></p>
+        <% end %>
+      </div>
+      </ul>
+  </div>
+</div>

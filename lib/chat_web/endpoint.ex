@@ -1,6 +1,8 @@
 defmodule ChatWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :chat
 
+  socket "live", Phoenix.LiveView.Socket
+
   socket "/socket", ChatWeb.UserSocket,
     websocket: true,
     longpoll: false
