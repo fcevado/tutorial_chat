@@ -42,5 +42,7 @@ defmodule ChatWeb.Endpoint do
     key: "_chat_key",
     signing_salt: "rJj4iIha"
 
+  plug Pow.Plug.Session, otp_app: :chat
+
   plug ChatWeb.Router
 end
