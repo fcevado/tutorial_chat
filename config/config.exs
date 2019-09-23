@@ -15,7 +15,8 @@ config :chat, ChatWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "WZtVjLf+NjRGeyK2HsMarxmzvdOCYY/o7S1zX9bMazO+NUbZcAvV0Y4QHhXt49/M",
   render_errors: [view: ChatWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Chat.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Chat.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [signing_salt: "4sR3+42Q+0zD0pvSJyVK5MZD94i4y+Ji"]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -24,6 +25,8 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :phoenix, template_engines: [leex: Phoenix.LiveView.Engine]
 
 config :chat, :pow,
   user: Chat.Users.User,
