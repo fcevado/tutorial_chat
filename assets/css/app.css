@@ -1,3 +1,24 @@
 /* This file is for your main application css. */
 
 @import "./phoenix.css";
+
+.messages {
+  height: 350px;
+  overflow: scroll;
+}
+
+.chatroom {
+  width: 900px;
+}
+
+.chat-content {
+  display: inline-block;
+  width: 600px;
+}
+
+.members {
+  display: inline-block;
+  float: right;
+  width: 200px;
+}
+
